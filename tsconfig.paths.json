@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "paths": {
+      "tests": ["tests/*"],
+      "@/*": ["./*"],
+      "@navigator/*": ["navigator/*"],
+      "@pages/*": ["pages/*"],
+      "@utils/*": ["utils/*"],
+    }
+  }
+}
