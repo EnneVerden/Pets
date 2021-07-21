@@ -14,6 +14,10 @@ export const styles = StyleSheet.create({
     width: '100%',
     alignItems: 'center',
   },
+  button: {
+    width: 40,
+    height: 40,
+  },
   textContainer: {
     paddingTop: 5,
     paddingBottom: 5,

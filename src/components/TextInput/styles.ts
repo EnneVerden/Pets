@@ -9,13 +9,23 @@ export const styles = StyleSheet.create({
     borderRadius: 10,
     flexDirection: 'row',
   },
+  iconContainer: {
+    width: '10%',
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingRight: 5,
+  },
+  icon: {
+    width: 17,
+    height: 17,
+  },
   input: {
     fontSize: 18,
     color: Colors.fontBlue,
   },
-  image: {
+  buttonContainer: {
+    width: '20%',
     alignItems: 'center',
     justifyContent: 'center',
-    paddingRight: 5,
   },
 })

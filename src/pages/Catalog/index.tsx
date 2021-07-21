@@ -4,6 +4,8 @@ import { SafeAreaView, View, Text, FlatList } from 'react-native'
 import TextInput from '@components/TextInput'
 import SearchIcon from '@assets/search.svg'
 import PetCard from '@components/PetCard'
+import Button from '@components/Button'
+import FiltersIcon from '@assets/filters.svg'
 
 import { styles } from './styles'
 
@@ -23,7 +25,15 @@ const CatalogPage = (): ReactElement => {
         <TextInput
           value={searchFragment}
           onChange={setSearchFragment}
-          LeftIcon={<SearchIcon width={25} height={25} />}
+          LeftIcon={SearchIcon}
+          RightButton={
+            <Button
+              Icon={FiltersIcon}
+              styles={{
+                button: styles.button,
+              }}
+            />
+          }
           placeholder="Search pet"
           styles={{
             container: styles.textContainer,
