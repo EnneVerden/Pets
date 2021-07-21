@@ -6,22 +6,24 @@ export const styles = StyleSheet.create({
     width: '100%',
     flexDirection: 'row',
     backgroundColor: '#ffffff',
-    padding: 20,
-    justifyContent: 'space-between',
+    marginTop: 10,
+    marginBottom: 10,
+    padding: 15,
   },
-  info: {
-    flexDirection: 'row',
+  imageContainer: {
+    width: '30%',
   },
   image: {
     borderRadius: 50,
   },
   textInfo: {
-    marginLeft: 15,
+    width: '45%',
+    paddingLeft: 10,
     justifyContent: 'space-around',
   },
   name: {
     color: Colors.fontBlue,
-    fontSize: 20,
+    fontSize: 18,
     fontWeight: 'bold',
   },
   location: {
@@ -29,10 +31,11 @@ export const styles = StyleSheet.create({
   },
   locationText: {
     color: Colors.fontBlue,
-    fontSize: 16,
+    fontSize: 14,
     marginLeft: 3,
   },
   profile: {
+    width: '25%',
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -43,6 +46,6 @@ export const styles = StyleSheet.create({
 })
 
 export const imageSize = {
-  width: 90,
-  height: 90,
+  width: 85,
+  height: 85,
 }

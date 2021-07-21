@@ -14,6 +14,7 @@ module.exports = {
           '@components': './src/components',
           '@navigator': './src/navigator',
           '@pages': './src/pages',
+          '@types': './src/types',
           '@utils': './src/utils',
           '@assets': './src/assets',
         },

@@ -8,6 +8,7 @@
       "@components/*": ["components/*"],
       "@navigator/*": ["navigator/*"],
       "@pages/*": ["pages/*"],
+      "@types/*": ["types/*"],
       "@utils/*": ["utils/*"],
       "@assets/*": ["assets/*"],
     }

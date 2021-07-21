@@ -1,17 +1,24 @@
 import React, { ReactElement, useState } from 'react'
 
-import { View, Text } from 'react-native'
+import { SafeAreaView, View, Text, FlatList } from 'react-native'
 import TextInput from '@components/TextInput'
 import SearchIcon from '@assets/search.svg'
 import PetCard from '@components/PetCard'
 
 import { styles } from './styles'
 
+import { data as cats } from '../../../data'
+
+const renderItem = ({ item }: any): ReactElement => (
+  <PetCard imageURI={item.image ? item.image.url : ''} name={item.name} origin={item.origin} />
+)
+
 const CatalogPage = (): ReactElement => {
+  const [data, setData] = useState(cats)
   const [searchFragment, setSearchFragment] = useState('')
 
   return (
-    <View style={styles.contentContainer}>
+    <SafeAreaView style={styles.contentContainer}>
       <View style={styles.wrapper}>
         <TextInput
           value={searchFragment}
@@ -27,13 +34,14 @@ const CatalogPage = (): ReactElement => {
         <Text style={styles.title}>Pets</Text>
       </View>
       <View style={[styles.wrapper]}>
-        <PetCard
-          imageURI="https://cdna.artstation.com/p/assets/images/images/031/825/628/large/glawdys-hodiesne-sans-titre-1.jpg?1604688006"
-          name="Matias"
-          origin="USA"
+        <FlatList
+          data={data}
+          renderItem={renderItem}
+          keyExtractor={item => item.id}
+          style={styles.list}
         />
       </View>
-    </View>
+    </SafeAreaView>
   )
 }
 
