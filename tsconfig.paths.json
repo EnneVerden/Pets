@@ -3,9 +3,13 @@
     "paths": {
       "tests": ["tests/*"],
       "@/*": ["./*"],
+      "@constants/*": ["constants/*"],
+      "@theme/*": ["theme/*"],
+      "@components/*": ["components/*"],
       "@navigator/*": ["navigator/*"],
       "@pages/*": ["pages/*"],
       "@utils/*": ["utils/*"],
+      "@assets/*": ["assets/*"],
     }
   }
 }
