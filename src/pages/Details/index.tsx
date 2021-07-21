@@ -1,5 +1,5 @@
-import React, {ReactElement} from 'react'
-import {Text, View} from 'react-native'
+import React, { ReactElement } from 'react'
+import { Text, View } from 'react-native'
 
 const DetailsPage = (): ReactElement => {
   return (
