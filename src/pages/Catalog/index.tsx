@@ -96,6 +96,7 @@ const CatalogPage = (): ReactElement => {
           data={data}
           renderItem={renderItem}
           keyExtractor={item => item.id}
+          getItemLayout={(data, index) => ({ length: 135, offset: 135 * index, index })}
           style={styles.list}
         />
       </View>
