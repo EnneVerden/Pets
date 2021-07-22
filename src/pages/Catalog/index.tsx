@@ -4,6 +4,8 @@ import { SafeAreaView, View, Text, FlatList } from 'react-native'
 import TextInput from '@components/TextInput'
 import PetCard from '@components/PetCard'
 import Button from '@components/Button'
+import Popup from '@components/Popup'
+import Checkbox from '@components/Checkbox'
 
 import SearchIcon from '@assets/search.svg'
 import FiltersIcon from '@assets/filters.svg'
@@ -19,6 +21,30 @@ const renderItem = ({ item }: any): ReactElement => (
 const CatalogPage = (): ReactElement => {
   const [data, setData] = useState(cats)
   const [searchFragment, setSearchFragment] = useState('')
+  const [filtersIsOpen, setFiltersIsOpen] = useState(false)
+  const [filters, setFilters] = useState({
+    name: true,
+    origin: true,
+  })
+  const [tempFilters, setTempFilters] = useState(filters)
+
+  const handleOpenFilters = (): void => {
+    setFiltersIsOpen(true)
+  }
+
+  const handleCloseFilters = (): void => {
+    setFiltersIsOpen(false)
+    setTempFilters(filters)
+  }
+
+  const handleChangeFilter = (name: 'name' | 'origin') => (): void => {
+    setTempFilters(filters => ({ ...filters, [name]: !filters[name] }))
+  }
+
+  const handleApplyFilters = (): void => {
+    setFiltersIsOpen(false)
+    setFilters(tempFilters)
+  }
 
   return (
     <SafeAreaView style={styles.contentContainer}>
@@ -29,6 +55,7 @@ const CatalogPage = (): ReactElement => {
           LeftIcon={SearchIcon}
           RightButton={
             <Button
+              onPress={handleOpenFilters}
               Icon={FiltersIcon}
               styles={{
                 button: styles.button,
@@ -52,6 +79,16 @@ const CatalogPage = (): ReactElement => {
           style={styles.list}
         />
       </View>
+      <Popup visible={filtersIsOpen} onSubmit={handleApplyFilters} onCancel={handleCloseFilters}>
+        <View style={styles.popupContainer}>
+          <Checkbox value={tempFilters.name} onChange={handleChangeFilter('name')} title="Name" />
+          <Checkbox
+            value={tempFilters.origin}
+            onChange={handleChangeFilter('origin')}
+            title="Origin"
+          />
+        </View>
+      </Popup>
     </SafeAreaView>
   )
 }

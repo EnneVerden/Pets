@@ -38,4 +38,10 @@ export const styles = StyleSheet.create({
     width: '100%',
     height: '75%',
   },
+  popupContainer: {
+    paddingLeft: 10,
+    paddingRight: 10,
+    paddingTop: 15,
+    paddingBottom: 15,
+  },
 })
