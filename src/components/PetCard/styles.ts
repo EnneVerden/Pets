@@ -9,6 +9,8 @@ export const styles = StyleSheet.create({
     marginTop: 10,
     marginBottom: 10,
     padding: 15,
+    borderRadius: 10,
+    elevation: 2,
   },
   imageContainer: {
     width: '30%',

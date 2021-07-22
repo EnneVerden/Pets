@@ -22,6 +22,7 @@ export const styles = StyleSheet.create({
     paddingTop: 5,
     paddingBottom: 5,
     marginTop: 20,
+    elevation: 15,
   },
   titleContainer: {
     marginTop: 40,

@@ -2,9 +2,10 @@ import React, { ReactElement, useState } from 'react'
 
 import { SafeAreaView, View, Text, FlatList } from 'react-native'
 import TextInput from '@components/TextInput'
-import SearchIcon from '@assets/search.svg'
 import PetCard from '@components/PetCard'
 import Button from '@components/Button'
+
+import SearchIcon from '@assets/search.svg'
 import FiltersIcon from '@assets/filters.svg'
 
 import { styles } from './styles'
@@ -34,14 +35,14 @@ const CatalogPage = (): ReactElement => {
               }}
             />
           }
-          placeholder="Search pet"
+          placeholder="Search cat"
           styles={{
             container: styles.textContainer,
           }}
         />
       </View>
       <View style={[styles.wrapper, styles.titleContainer]}>
-        <Text style={styles.title}>Pets</Text>
+        <Text style={styles.title}>Cats</Text>
       </View>
       <View style={[styles.wrapper]}>
         <FlatList
