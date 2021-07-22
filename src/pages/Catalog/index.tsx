@@ -1,4 +1,4 @@
-import React, { ReactElement, useState } from 'react'
+import React, { ReactElement, useState, useEffect } from 'react'
 
 import { SafeAreaView, View, Text, FlatList } from 'react-native'
 import TextInput from '@components/TextInput'
@@ -46,6 +46,26 @@ const CatalogPage = (): ReactElement => {
     setFilters(tempFilters)
   }
 
+  useEffect(() => {
+    const lowercaseFragment = searchFragment.toLowerCase()
+
+    const filteredCats = cats.filter(cat => {
+      if (filters.name && !filters.origin) {
+        return cat.name.toLowerCase().includes(lowercaseFragment)
+      }
+      if (filters.origin && !filters.name) {
+        return cat.origin.toLowerCase().includes(lowercaseFragment)
+      }
+
+      return (
+        cat.name.toLowerCase().includes(lowercaseFragment) ||
+        cat.origin.toLowerCase().includes(lowercaseFragment)
+      )
+    })
+
+    setData(filteredCats)
+  }, [searchFragment])
+
   return (
     <SafeAreaView style={styles.contentContainer}>
       <View style={styles.wrapper}>
@@ -81,7 +101,7 @@ const CatalogPage = (): ReactElement => {
       </View>
       <Popup visible={filtersIsOpen} onSubmit={handleApplyFilters} onCancel={handleCloseFilters}>
         <View style={styles.popupContainer}>
-          <Checkbox value={tempFilters.name} onChange={handleChangeFilter('name')} title="Name" />
+          <Checkbox value={tempFilters.name} onChange={handleChangeFilter('name')} title="Breed" />
           <Checkbox
             value={tempFilters.origin}
             onChange={handleChangeFilter('origin')}

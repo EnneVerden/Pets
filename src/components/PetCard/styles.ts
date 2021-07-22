@@ -16,6 +16,8 @@ export const styles = StyleSheet.create({
     width: '30%',
   },
   image: {
+    width: 85,
+    height: 85,
     borderRadius: 50,
   },
   textInfo: {
@@ -46,8 +48,3 @@ export const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
 })
-
-export const imageSize = {
-  width: 85,
-  height: 85,
-}
