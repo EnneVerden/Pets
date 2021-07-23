@@ -1,11 +1,11 @@
 import React, { ReactElement } from 'react'
 import { useNavigation } from '@react-navigation/native'
 
-import Button from '@components/Button'
-import BackIcon from '@assets/back.svg'
+import Button from '@/components/Button'
+import BackIcon from '@/assets/icons/back.svg'
 
 import { styles } from './styles'
-import Colors from '@theme/colors'
+import Colors from '@/theme/colors'
 
 const BackButton = (): ReactElement => {
   const navigation = useNavigation()

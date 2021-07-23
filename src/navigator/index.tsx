@@ -1,7 +1,7 @@
 import React from 'react'
 import { createStackNavigator } from '@react-navigation/stack'
 
-import CatalogPage from '@pages/Catalog'
+import CatalogPage from '@/pages/Catalog'
 import DetailsPage from '@/pages/Details'
 
 import { AppNavigation } from '@/constants/navigation'

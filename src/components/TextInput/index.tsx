@@ -2,7 +2,7 @@ import React, { ReactElement } from 'react'
 
 import { View, TextInput as RnTextInput } from 'react-native'
 
-import Colors from '@theme/colors'
+import Colors from '@/theme/colors'
 import { styles } from './styles'
 import { Props } from './types'
 

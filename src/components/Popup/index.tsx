@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react'
 
 import { Modal, View } from 'react-native'
-import Button from '@components/Button'
+import Button from '@/components/Button'
 
 import { styles } from './styles'
 import { Props } from './types'

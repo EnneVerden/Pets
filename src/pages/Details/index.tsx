@@ -3,11 +3,11 @@ import { useRoute } from '@react-navigation/native'
 import FastImage from 'react-native-fast-image'
 
 import { Text, View } from 'react-native'
-import PetCard from '@components/PetCard'
-import BackButton from '@components/BackButton'
+import PetCard from '@/components/PetCard'
+import BackButton from '@/components/BackButton'
 
 import { styles } from './styles'
-import { Cat } from '@types/cat'
+import { Cat } from '@/types/cat'
 import { Route } from './types'
 
 import { data as cats } from '../../../data'
@@ -28,7 +28,9 @@ const DetailsPage = (): ReactElement => {
       <BackButton />
       <FastImage
         source={
-          cat.image ? { uri: cat.image.url, priority: 'high' } : require('@assets/cat-avatar.png')
+          cat.image
+            ? { uri: cat.image.url, priority: 'high' }
+            : require('@assets/images/cat-avatar.png')
         }
         style={styles.image}
         resizeMode="cover"

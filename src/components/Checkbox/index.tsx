@@ -3,7 +3,7 @@ import React, { ReactElement } from 'react'
 import { View, Text } from 'react-native'
 import RnCheckbox from '@react-native-community/checkbox'
 
-import Colors from '@theme/colors'
+import Colors from '@/theme/colors'
 import { styles } from './styles'
 import { Props } from './types'
 

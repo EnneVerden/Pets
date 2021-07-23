@@ -1,9 +1,10 @@
 import React, { ReactElement } from 'react'
 import { useNavigation } from '@react-navigation/native'
 
-import { View, Text, TouchableOpacity } from 'react-native'
+import { View, Text } from 'react-native'
+import Button from '@/components/Button'
 import FastImage from 'react-native-fast-image'
-import LocationIcon from '@assets/location.svg'
+import LocationIcon from '@/assets/icons/location.svg'
 
 import { styles } from './styles'
 import { Props } from './types'
@@ -23,7 +24,7 @@ const PetCard = ({ cat, onlyInfo, styles: userStyles, iconSize }: Props): ReactE
             source={
               cat.image
                 ? { uri: cat.image.url, priority: 'high' }
-                : require('@assets/cat-avatar.png')
+                : require('@assets/images/cat-avatar.png')
             }
             style={[styles.image, userStyles?.image?.image]}
             resizeMode="cover"
@@ -39,9 +40,15 @@ const PetCard = ({ cat, onlyInfo, styles: userStyles, iconSize }: Props): ReactE
       </View>
       {!onlyInfo && (
         <View style={[styles.profile, userStyles?.profile?.button]}>
-          <TouchableOpacity onPress={handleGoProfile}>
-            <Text style={[styles.profileText, userStyles?.profile?.title]}>Go Profile</Text>
-          </TouchableOpacity>
+          <Button
+            onPress={handleGoProfile}
+            styles={{
+              button: [styles.profileButton, userStyles?.profile?.button],
+              text: [styles.profileText, userStyles?.profile?.title],
+            }}
+            opacity={0.3}>
+            Go Profile
+          </Button>
         </View>
       )}
     </View>

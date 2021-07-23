@@ -1,16 +1,17 @@
 import React, { ReactElement, useState, useEffect } from 'react'
 
 import { SafeAreaView, View, Text, FlatList } from 'react-native'
-import TextInput from '@components/TextInput'
-import PetCard from '@components/PetCard'
-import Button from '@components/Button'
-import Popup from '@components/Popup'
-import Checkbox from '@components/Checkbox'
+import TextInput from '@/components/TextInput'
+import PetCard from '@/components/PetCard'
+import Button from '@/components/Button'
+import Popup from '@/components/Popup'
+import Checkbox from '@/components/Checkbox'
 
-import SearchIcon from '@assets/search.svg'
-import FiltersIcon from '@assets/filters.svg'
+import SearchIcon from '@/assets/icons/search.svg'
+import FiltersIcon from '@/assets/icons/filters.svg'
 
 import { styles } from './styles'
+import { Filters } from './types'
 
 import { data as cats } from '../../../data'
 
@@ -18,13 +19,13 @@ const renderItem = ({ item }: any): ReactElement => <PetCard cat={item} />
 
 const CatalogPage = (): ReactElement => {
   const [data, setData] = useState(cats)
-  const [searchFragment, setSearchFragment] = useState('')
-  const [filtersIsOpen, setFiltersIsOpen] = useState(false)
-  const [filters, setFilters] = useState({
-    name: true,
+  const [searchFragment, setSearchFragment] = useState<string>('')
+  const [filtersIsOpen, setFiltersIsOpen] = useState<boolean>(false)
+  const [filters, setFilters] = useState<Filters>({
+    breed: true,
     origin: true,
   })
-  const [tempFilters, setTempFilters] = useState(filters)
+  const [tempFilters, setTempFilters] = useState<Filters>(filters)
 
   const handleOpenFilters = (): void => {
     setFiltersIsOpen(true)
@@ -35,7 +36,7 @@ const CatalogPage = (): ReactElement => {
     setTempFilters(filters)
   }
 
-  const handleChangeFilter = (name: 'name' | 'origin') => (): void => {
+  const handleChangeFilter = (name: 'breed' | 'origin') => (): void => {
     setTempFilters(filters => ({ ...filters, [name]: !filters[name] }))
   }
 
@@ -48,10 +49,10 @@ const CatalogPage = (): ReactElement => {
     const lowercaseFragment = searchFragment.toLowerCase()
 
     const filteredCats = cats.filter(cat => {
-      if (filters.name && !filters.origin) {
+      if (filters.breed && !filters.origin) {
         return cat.name.toLowerCase().includes(lowercaseFragment)
       }
-      if (filters.origin && !filters.name) {
+      if (filters.origin && !filters.breed) {
         return cat.origin.toLowerCase().includes(lowercaseFragment)
       }
 
@@ -101,7 +102,11 @@ const CatalogPage = (): ReactElement => {
       </View>
       <Popup visible={filtersIsOpen} onSubmit={handleApplyFilters} onCancel={handleCloseFilters}>
         <View style={styles.popupContainer}>
-          <Checkbox value={tempFilters.name} onChange={handleChangeFilter('name')} title="Breed" />
+          <Checkbox
+            value={tempFilters.breed}
+            onChange={handleChangeFilter('breed')}
+            title="Breed"
+          />
           <Checkbox
             value={tempFilters.origin}
             onChange={handleChangeFilter('origin')}

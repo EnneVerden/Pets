@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native'
-import Colors from '@theme/colors'
+import Colors from '@/theme/colors'
 
 export const styles = StyleSheet.create({
   container: {
@@ -42,6 +42,13 @@ export const styles = StyleSheet.create({
     width: '25%',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  profileButton: {
+    backgroundColor: '#ffffff',
+    paddingRight: 0,
+    paddingLeft: 0,
+    borderRadius: 0,
+    elevation: 0,
   },
   profileText: {
     color: Colors.link,
