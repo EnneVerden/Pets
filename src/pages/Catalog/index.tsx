@@ -78,6 +78,7 @@ const CatalogPage = (): ReactElement => {
               styles={{
                 button: styles.button,
               }}
+              opacity={0.7}
             />
           }
           placeholder="Search cat"

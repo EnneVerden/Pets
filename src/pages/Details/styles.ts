@@ -1,9 +1,11 @@
 import { StyleSheet } from 'react-native'
+import Colors from '@theme/colors'
 
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
+    backgroundColor: Colors.backgroundPink,
   },
   image: {
     width: '100%',

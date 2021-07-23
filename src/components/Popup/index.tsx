@@ -25,7 +25,8 @@ const Popup = ({
               styles={{
                 button: styles.button,
                 text: styles.buttonText,
-              }}>
+              }}
+              opacity={0.5}>
               Cancel
             </Button>
             <Button
@@ -33,7 +34,8 @@ const Popup = ({
               styles={{
                 button: styles.button,
                 text: styles.buttonText,
-              }}>
+              }}
+              opacity={0.5}>
               OK
             </Button>
           </View>

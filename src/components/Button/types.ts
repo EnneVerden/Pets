@@ -9,4 +9,10 @@ export type Props = {
     text?: any
     icon?: any
   }
+  iconSize?: {
+    width: number
+    height: number
+  }
+  iconColor?: string
+  opacity?: number
 }
