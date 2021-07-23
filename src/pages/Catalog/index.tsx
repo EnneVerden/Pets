@@ -14,9 +14,7 @@ import { styles } from './styles'
 
 import { data as cats } from '../../../data'
 
-const renderItem = ({ item }: any): ReactElement => (
-  <PetCard imageURI={item.image ? item.image.url : ''} name={item.name} origin={item.origin} />
-)
+const renderItem = ({ item }: any): ReactElement => <PetCard cat={item} />
 
 const CatalogPage = (): ReactElement => {
   const [data, setData] = useState(cats)

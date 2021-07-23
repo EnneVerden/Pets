@@ -3,6 +3,7 @@ import Colors from '@theme/colors'
 
 export const styles = StyleSheet.create({
   container: {
+    height: 115,
     flexDirection: 'row',
     backgroundColor: '#ffffff',
     marginTop: 10,

@@ -1,34 +1,49 @@
 import React, { ReactElement } from 'react'
+import { useNavigation } from '@react-navigation/native'
 
-import { View, Text } from 'react-native'
+import { View, Text, TouchableOpacity } from 'react-native'
 import FastImage from 'react-native-fast-image'
 import LocationIcon from '@assets/location.svg'
 
 import { styles } from './styles'
 import { Props } from './types'
 
-const PetCard = ({ name, origin, imageURI }: Props): ReactElement => {
+const PetCard = ({ cat, onlyInfo, styles: userStyles, iconSize }: Props): ReactElement => {
+  const navigation = useNavigation()
+
+  const handleGoProfile = (): void => {
+    navigation.navigate('Details', { catId: cat.id })
+  }
+
   return (
-    <View style={styles.container}>
-      <View style={styles.imageContainer}>
-        <FastImage
-          source={
-            imageURI ? { uri: imageURI, priority: 'high' } : require('@assets/cat-avatar.png')
-          }
-          style={styles.image}
-          resizeMode="cover"
-        />
-      </View>
-      <View style={styles.textInfo}>
-        <Text style={styles.name}>{name}</Text>
-        <View style={styles.location}>
-          <LocationIcon width={20} height={20} />
-          <Text style={styles.locationText}>{origin}</Text>
+    <View style={[styles.container, userStyles?.container]}>
+      {!onlyInfo && (
+        <View style={[styles.imageContainer, userStyles?.image?.container]}>
+          <FastImage
+            source={
+              cat.image
+                ? { uri: cat.image.url, priority: 'high' }
+                : require('@assets/cat-avatar.png')
+            }
+            style={[styles.image, userStyles?.image?.image]}
+            resizeMode="cover"
+          />
+        </View>
+      )}
+      <View style={[styles.textInfo, userStyles?.info?.container]}>
+        <Text style={[styles.name, userStyles?.info?.breed]}>{cat.name}</Text>
+        <View style={[styles.location, userStyles?.info?.location?.container]}>
+          <LocationIcon width={iconSize?.width || 20} height={iconSize?.height || 20} />
+          <Text style={[styles.locationText, userStyles?.info?.location?.title]}>{cat.origin}</Text>
         </View>
       </View>
-      <View style={styles.profile}>
-        <Text style={styles.profileText}>Go Profile</Text>
-      </View>
+      {!onlyInfo && (
+        <View style={[styles.profile, userStyles?.profile?.button]}>
+          <TouchableOpacity onPress={handleGoProfile}>
+            <Text style={[styles.profileText, userStyles?.profile?.title]}>Go Profile</Text>
+          </TouchableOpacity>
+        </View>
+      )}
     </View>
   )
 }
