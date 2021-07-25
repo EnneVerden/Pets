@@ -35,6 +35,16 @@ export const styles = StyleSheet.create({
   },
   descriptionText: {
     color: Colors.fontBlue,
+    fontSize: 16,
+  },
+  wikipedia: {
+    marginTop: 20,
+    alignItems: 'center',
+  },
+  wikipediaTitle: {
+    paddingBottom: 20,
+    color: Colors.link,
     fontSize: 18,
+    textDecorationLine: 'underline',
   },
 })
