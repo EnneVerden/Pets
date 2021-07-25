@@ -1,10 +1,14 @@
 import React, { ReactElement, useState, useEffect } from 'react'
 import { useRoute } from '@react-navigation/native'
-import FastImage from 'react-native-fast-image'
 
-import { Text, View } from 'react-native'
-import PetCard from '@/components/PetCard'
+import FastImage from 'react-native-fast-image'
+import { Text, View, ScrollView } from 'react-native'
 import BackButton from '@/components/BackButton'
+import PetCard from '@/components/PetCard'
+import ParameterCard from '@/components/ParameterCard'
+
+import WeightIcon from '@/assets/icons/weight.svg'
+import BrainIcon from '@/assets/icons/brain.svg'
 
 import { styles } from './styles'
 import { Cat } from '@/types/cat'
@@ -30,7 +34,7 @@ const DetailsPage = (): ReactElement => {
         source={
           cat.image
             ? { uri: cat.image.url, priority: 'high' }
-            : require('@assets/images/cat-avatar.png')
+            : require('@/assets/images/cat-avatar.png')
         }
         style={styles.image}
         resizeMode="cover"
@@ -51,6 +55,13 @@ const DetailsPage = (): ReactElement => {
           height: 25,
         }}
       />
+      <View style={[styles.wrapper, styles.cardsRow]}>
+        <ParameterCard Icon={WeightIcon} title={`${cat.weight?.metric} kg` || '???'} />
+        <ParameterCard Icon={BrainIcon} title={`${cat.intelligence}/5` || '???'} />
+      </View>
+      <View style={[styles.wrapper, styles.description]}>
+        <Text style={styles.descriptionText}>{cat.description}</Text>
+      </View>
     </View>
   ) : (
     <Text>Cat not found</Text>

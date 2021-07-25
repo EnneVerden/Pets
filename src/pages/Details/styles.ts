@@ -27,4 +27,20 @@ export const styles = StyleSheet.create({
   cardOrigin: {
     fontSize: 18,
   },
+  wrapper: {
+    width: '100%',
+    paddingHorizontal: '10%',
+  },
+  cardsRow: {
+    marginTop: 110,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  description: {
+    marginTop: 20,
+  },
+  descriptionText: {
+    color: Colors.fontBlue,
+    fontSize: 18,
+  },
 })

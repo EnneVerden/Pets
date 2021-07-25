@@ -2,6 +2,7 @@ export interface Cat {
   id: string
   name: string
   origin: string
+  intelligence: number
   temperament?: string
   description?: string
   weight?: {
