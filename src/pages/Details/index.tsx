@@ -2,7 +2,7 @@ import React, { ReactElement, useState, useEffect } from 'react'
 import { useRoute } from '@react-navigation/native'
 
 import FastImage from 'react-native-fast-image'
-import { Text, View, ScrollView } from 'react-native'
+import { Text, View, SafeAreaView, ScrollView, useWindowDimensions } from 'react-native'
 import BackButton from '@/components/BackButton'
 import PetCard from '@/components/PetCard'
 import ParameterCard from '@/components/ParameterCard'
@@ -18,6 +18,8 @@ import { data as cats } from '../../../data'
 
 const DetailsPage = (): ReactElement => {
   const route = useRoute<Route>()
+  const width = useWindowDimensions().width
+  const height = useWindowDimensions().height
 
   const [cat, setCat] = useState<Cat | null>(null)
 
@@ -28,41 +30,43 @@ const DetailsPage = (): ReactElement => {
   }, [])
 
   return cat ? (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <BackButton />
-      <FastImage
-        source={
-          cat.image
-            ? { uri: cat.image.url, priority: 'high' }
-            : require('@/assets/images/cat-avatar.png')
-        }
-        style={styles.image}
-        resizeMode="cover"
-      />
-      <PetCard
-        cat={cat}
-        onlyInfo
-        styles={{
-          container: styles.card,
-          info: {
-            container: styles.cardInfo,
-            breed: styles.cardBreed,
-            location: { title: styles.cardOrigin },
-          },
-        }}
-        iconSize={{
-          width: 25,
-          height: 25,
-        }}
-      />
-      <View style={[styles.wrapper, styles.cardsRow]}>
-        <ParameterCard Icon={WeightIcon} title={`${cat.weight?.metric} kg` || '???'} />
-        <ParameterCard Icon={BrainIcon} title={`${cat.intelligence}/5` || '???'} />
-      </View>
-      <View style={[styles.wrapper, styles.description]}>
-        <Text style={styles.descriptionText}>{cat.description}</Text>
-      </View>
-    </View>
+      <ScrollView>
+        <FastImage
+          source={
+            cat.image
+              ? { uri: cat.image.url, priority: 'high' }
+              : require('@/assets/images/cat-avatar.png')
+          }
+          style={{ width, height: height * 0.45 }}
+          resizeMode="cover"
+        />
+        <PetCard
+          cat={cat}
+          onlyInfo
+          styles={{
+            container: [styles.card, { top: height * 0.4, left: (width - width * 0.8) / 2 }],
+            info: {
+              container: styles.cardInfo,
+              breed: styles.cardBreed,
+              location: { title: styles.cardOrigin },
+            },
+          }}
+          iconSize={{
+            width: 25,
+            height: 25,
+          }}
+        />
+        <View style={[styles.wrapper, styles.cardsRow]}>
+          <ParameterCard Icon={WeightIcon} title={`${cat.weight?.metric} kg` || '???'} />
+          <ParameterCard Icon={BrainIcon} title={`${cat.intelligence}/5` || '???'} />
+        </View>
+        <View style={[styles.wrapper, styles.description]}>
+          <Text style={styles.descriptionText}>{cat.description}</Text>
+        </View>
+      </ScrollView>
+    </SafeAreaView>
   ) : (
     <Text>Cat not found</Text>
   )
