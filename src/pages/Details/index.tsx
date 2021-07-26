@@ -109,9 +109,11 @@ const DetailsPage = (): ReactElement => {
             )}
           />
         </View>
-        <View style={[styles.wrapper, styles.description]}>
-          <Text style={styles.descriptionText}>{cat.description}</Text>
-        </View>
+        {cat.description && (
+          <View style={[styles.wrapper, styles.description]}>
+            <Text style={styles.descriptionText}>{cat.description}</Text>
+          </View>
+        )}
         {cat.wikipedia_url && (
           <View style={styles.wikipedia}>
             <Pressable onPress={handleOpenLink}>

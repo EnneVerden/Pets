@@ -82,7 +82,7 @@ const CatalogPage = (): ReactElement => {
               opacity={0.7}
             />
           }
-          placeholder="Search cat"
+          placeholder="Search a cat"
           styles={{
             container: styles.textContainer,
           }}
