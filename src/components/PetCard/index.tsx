@@ -24,7 +24,7 @@ const PetCard = ({ cat, onlyInfo, styles: userStyles, iconSize }: Props): ReactE
             source={
               cat.image
                 ? { uri: cat.image.url, priority: 'high' }
-                : require('@assets/images/cat-avatar.png')
+                : require('@/assets/images/cat-avatar.png')
             }
             style={[styles.image, userStyles?.image?.image]}
             resizeMode="cover"
