@@ -14,7 +14,7 @@ import { styles } from './styles'
 import { Data, Filters } from './types'
 import { Cat } from '@/types/Cat'
 
-import { data as cats } from '../../../data'
+import { data as cats } from '@/data'
 
 const renderItem = ({ item }: Record<'item', Cat>): ReactElement => {
   return <PetCard cat={item} />

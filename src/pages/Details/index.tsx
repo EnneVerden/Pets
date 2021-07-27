@@ -23,7 +23,7 @@ import { styles } from './styles'
 import { Cat } from '@/types/cat'
 import { Route } from './types'
 
-import { data as cats } from '../../../data'
+import { data as cats } from '@/data'
 
 const getIntelligenceName = (value: number): string => {
   if (value >= 4) {
