@@ -35,8 +35,9 @@ export const styles = StyleSheet.create({
     marginBottom: 15,
   },
   list: {
+    marginTop: 30,
     width: '100%',
-    height: '75%',
+    height: '85%',
   },
   popupContainer: {
     paddingLeft: 10,

@@ -1,6 +1,6 @@
 import React, { ReactElement, useState, useEffect } from 'react'
 
-import { SafeAreaView, View, Text, FlatList } from 'react-native'
+import { SafeAreaView, View, Text, SectionList } from 'react-native'
 import TextInput from '@/components/TextInput'
 import PetCard from '@/components/PetCard'
 import Button from '@/components/Button'
@@ -11,14 +11,17 @@ import SearchIcon from '@/assets/icons/search.svg'
 import FiltersIcon from '@/assets/icons/filters.svg'
 
 import { styles } from './styles'
-import { Filters } from './types'
+import { Data, Filters } from './types'
+import { Cat } from '@/types/Cat'
 
 import { data as cats } from '../../../data'
 
-const renderItem = ({ item }: any): ReactElement => <PetCard cat={item} />
+const renderItem = ({ item }: Record<'item', Cat>): ReactElement => {
+  return <PetCard cat={item} />
+}
 
 const CatalogPage = (): ReactElement => {
-  const [data, setData] = useState(cats)
+  const [data, setData] = useState<Data>([])
   const [searchFragment, setSearchFragment] = useState<string>('')
   const [filtersIsOpen, setFiltersIsOpen] = useState<boolean>(false)
   const [filters, setFilters] = useState<Filters>({
@@ -26,6 +29,31 @@ const CatalogPage = (): ReactElement => {
     origin: true,
   })
   const [tempFilters, setTempFilters] = useState<Filters>(filters)
+
+  useEffect(() => {
+    const lowercaseFragment = searchFragment.toLowerCase()
+
+    const filteredCats: any = cats.filter(cat => {
+      if (filters.breed && !filters.origin) {
+        return cat.name.toLowerCase().includes(lowercaseFragment)
+      }
+      if (filters.origin && !filters.breed) {
+        return cat.origin.toLowerCase().includes(lowercaseFragment)
+      }
+
+      return (
+        cat.name.toLowerCase().includes(lowercaseFragment) ||
+        cat.origin.toLowerCase().includes(lowercaseFragment)
+      )
+    })
+
+    setData([
+      {
+        title: 'Cats',
+        data: filteredCats,
+      },
+    ])
+  }, [searchFragment])
 
   const handleOpenFilters = (): void => {
     setFiltersIsOpen(true)
@@ -44,26 +72,6 @@ const CatalogPage = (): ReactElement => {
     setFiltersIsOpen(false)
     setFilters(tempFilters)
   }
-
-  useEffect(() => {
-    const lowercaseFragment = searchFragment.toLowerCase()
-
-    const filteredCats = cats.filter(cat => {
-      if (filters.breed && !filters.origin) {
-        return cat.name.toLowerCase().includes(lowercaseFragment)
-      }
-      if (filters.origin && !filters.breed) {
-        return cat.origin.toLowerCase().includes(lowercaseFragment)
-      }
-
-      return (
-        cat.name.toLowerCase().includes(lowercaseFragment) ||
-        cat.origin.toLowerCase().includes(lowercaseFragment)
-      )
-    })
-
-    setData(filteredCats)
-  }, [searchFragment])
 
   return (
     <SafeAreaView style={styles.contentContainer}>
@@ -88,13 +96,13 @@ const CatalogPage = (): ReactElement => {
           }}
         />
       </View>
-      <View style={[styles.wrapper, styles.titleContainer]}>
-        <Text style={styles.title}>Cats</Text>
-      </View>
       <View style={[styles.wrapper]}>
-        <FlatList
-          data={data}
+        <SectionList
+          sections={data}
           renderItem={renderItem}
+          renderSectionHeader={({ section: { title } }) => (
+            <Text style={styles.title}>{title}</Text>
+          )}
           keyExtractor={item => item.id}
           getItemLayout={(data, index) => ({ length: 135, offset: 135 * index, index })}
           style={styles.list}
